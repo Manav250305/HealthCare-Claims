@@ -123,6 +123,20 @@
             font-weight: 400;
         }
 
+        /* NEW: ML Badge */
+        .ml-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 10px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            animation: pulse 2s infinite;
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
@@ -330,6 +344,8 @@
             margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .result-header h3 {
@@ -353,8 +369,14 @@
             50% { transform: scale(1.05); }
         }
 
-        .risk-low {
+        /* Enhanced risk level badges */
+        .risk-very_low {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .risk-low {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
             color: white;
         }
 
@@ -364,6 +386,11 @@
         }
 
         .risk-high {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+        }
+
+        .risk-critical {
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
         }
@@ -404,6 +431,18 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* NEW: ML Score Card */
+        .ml-score-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .ml-score-card .stat-value {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .field-grid {
@@ -470,6 +509,125 @@
             font-weight: 600;
         }
 
+        /* NEW: Recommendations Section */
+        .recommendations-list {
+            margin-top: 15px;
+        }
+
+        .recommendation-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid;
+            transition: all 0.3s;
+        }
+
+        .recommendation-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .recommendation-item.priority-critical {
+            border-left-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .recommendation-item.priority-high {
+            border-left-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .recommendation-item.priority-medium {
+            border-left-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .recommendation-item.priority-low {
+            border-left-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .recommendation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .recommendation-category {
+            font-weight: 600;
+            color: #f8fafc;
+            font-size: 0.95em;
+        }
+
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .priority-badge.critical {
+            background: #ef4444;
+            color: white;
+        }
+
+        .priority-badge.high {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .priority-badge.medium {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .priority-badge.low {
+            background: #10b981;
+            color: white;
+        }
+
+        .recommendation-action {
+            color: #cbd5e1;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* NEW: Score Breakdown */
+        .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .score-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .score-item-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .score-item-label {
+            font-size: 0.85em;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -481,6 +639,11 @@
 
             .field-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -495,7 +658,7 @@
             <div class="logo">
                 <div class="logo-icon">🏥</div>
             </div>
-            <h1>Healthcare Claims Intelligence</h1>
+            <h1>Healthcare Claims Intelligence<span class="ml-badge">🤖 ML v2.0</span></h1>
             <p>AI-Powered Medical Claims Analysis & Risk Assessment</p>
         </div>
 
@@ -509,7 +672,7 @@
                 </button>
                 <input type="file" id="fileInput" accept=".pdf" onchange="handleFileSelect(event)">
                 <p style="margin-top: 15px; color: #64748b; font-size: 0.9em;">
-                    Supported: PDF files (Max 10MB)
+                    Supported: PDF files (Max 10MB) • Enhanced with ML Anomaly Detection
                 </p>
             </div>
 
@@ -521,7 +684,7 @@
 
             <div style="text-align: center; margin-top: 30px;">
                 <button class="btn" id="uploadBtn" onclick="uploadAndProcess()" disabled>
-                    🚀 Process Claim
+                    🚀 Process Claim with ML
                 </button>
             </div>
 
@@ -653,7 +816,7 @@
                 progressFill.style.width = '60%';
 
                 // Step 3: Process the claim
-                showStatus('🧠 Processing claim with AI...', 'info');
+                showStatus('🧠 Processing claim with ML-enhanced AI...', 'info');
                 spinner.style.display = 'block';
 
                 const processResponse = await fetch(API_CONFIG.process_endpoint, {
@@ -677,7 +840,7 @@
                 setTimeout(() => {
                     spinner.style.display = 'none';
                     progressBar.style.display = 'none';
-                    showStatus('✅ Claim processed successfully!', 'success');
+                    showStatus('✅ Claim processed successfully with ML!', 'success');
                     displayResults(resultData);
                     uploadBtn.disabled = false;
                 }, 500);
@@ -696,28 +859,69 @@
             const riskClass = riskLevel.toLowerCase();
             const keyFields = data.results.extraction_results.key_fields;
             const analysis = data.results.risk_analysis;
+            const overallRisk = analysis.overall_risk;
+
+            // Check if ML-enhanced results are available
+            const isMLEnhanced = analysis.ml_enhanced || false;
+            const mlAnomalyScore = overallRisk.ml_anomaly_score || 'N/A';
+            const traditionalScore = overallRisk.traditional_score || overallRisk.overall_risk_score;
+            const recommendations = analysis.recommendations || [];
 
             resultsDiv.innerHTML = `
                 <div class="result-card">
                     <div class="result-header">
-                        <h3>📊 Analysis Results</h3>
+                        <h3>📊 Analysis Results ${isMLEnhanced ? '<span class="ml-badge">ML Enhanced</span>' : ''}</h3>
                         <span class="risk-badge risk-${riskClass}">${riskLevel} RISK</span>
                     </div>
 
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-value">${data.risk_score}</div>
-                            <div class="stat-label">Risk Score</div>
+                            <div class="stat-label">Overall Risk Score</div>
+                        </div>
+                        ${isMLEnhanced ? `
+                        <div class="stat-card ml-score-card">
+                            <div class="stat-value">${mlAnomalyScore}</div>
+                            <div class="stat-label">🤖 ML Anomaly Score</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-value">${data.recommendation}</div>
+                            <div class="stat-value">${traditionalScore}</div>
+                            <div class="stat-label">Traditional Score</div>
+                        </div>
+                        ` : ''}
+                        <div class="stat-card">
+                            <div class="stat-value" style="font-size: 1.2em;">${data.recommendation}</div>
                             <div class="stat-label">Recommendation</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-value">${data.claim_id}</div>
+                            <div class="stat-value" style="font-size: 1.2em;">${data.claim_id}</div>
                             <div class="stat-label">Claim ID</div>
                         </div>
                     </div>
+
+                    ${isMLEnhanced && overallRisk.claim_multiplier ? `
+                    <div class="details-section">
+                        <h4>🔬 ML Score Breakdown</h4>
+                        <div class="score-breakdown">
+                            <div class="score-item">
+                                <div class="score-item-value">${traditionalScore}</div>
+                                <div class="score-item-label">Rule-Based (70%)</div>
+                            </div>
+                            <div class="score-item">
+                                <div class="score-item-value">${mlAnomalyScore}</div>
+                                <div class="score-item-label">ML Anomaly (30%)</div>
+                            </div>
+                            <div class="score-item">
+                                <div class="score-item-value">${overallRisk.combined_score || 'N/A'}</div>
+                                <div class="score-item-label">Combined Score</div>
+                            </div>
+                            <div class="score-item">
+                                <div class="score-item-value">${overallRisk.claim_multiplier}x</div>
+                                <div class="score-item-label">Claim Multiplier</div>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
 
                     <div class="details-section">
                         <h4>🔍 Extracted Information</h4>
@@ -734,10 +938,10 @@
                     <div class="details-section">
                         <h4>⚠️ Risk Components</h4>
                         <div class="field-grid">
-                            ${Object.entries(analysis.overall_risk.component_scores).map(([key, value]) => `
+                            ${Object.entries(overallRisk.component_scores).map(([key, value]) => `
                                 <div class="field-item">
                                     <div class="field-label">${formatLabel(key)}</div>
-                                    <div class="field-value">${value}</div>
+                                    <div class="field-value">${typeof value === 'number' ? value.toFixed(2) : value}</div>
                                 </div>
                             `).join('')}
                         </div>
@@ -752,6 +956,24 @@
                             '<p style="color: #6ee7b7; margin: 10px 0;">✓ All required documents present</p>'
                         }
                     </div>
+
+                    ${recommendations.length > 0 ? `
+                    <div class="details-section">
+                        <h4>💡 Recommendations (${recommendations.length})</h4>
+                        <div class="recommendations-list">
+                            ${recommendations.map(rec => `
+                                <div class="recommendation-item priority-${rec.priority}">
+                                    <div class="recommendation-header">
+                                        <span class="recommendation-category">📌 ${rec.category}</span>
+                                        <span class="priority-badge ${rec.priority}">${rec.priority}</span>
+                                    </div>
+                                    <div class="recommendation-action">${rec.action}</div>
+                                    ${rec.impact_score ? `<div style="color: #94a3b8; font-size: 0.85em; margin-top: 8px;">Impact Score: ${rec.impact_score}</div>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
                 </div>
             `;
 
