@@ -1,6 +1,0 @@
-{
-  "api_id": "4uihuye9m0",
-  "upload_endpoint": "https://4uihuye9m0.execute-api.us-east-1.amazonaws.com/prod/upload",
-  "process_endpoint": "https://4uihuye9m0.execute-api.us-east-1.amazonaws.com/prod/process",
-  "region": "us-east-1"
-}
