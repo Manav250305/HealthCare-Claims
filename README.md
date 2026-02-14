@@ -1,6 +1,5 @@
 # Complete README with Architecture Documentation
 
-```markdown
 # Healthcare Claims Intelligence System
 
 AI-powered insurance claim analysis system using AWS Textract and GPT-4o-mini for fraud detection, document completeness validation, and risk assessment.
