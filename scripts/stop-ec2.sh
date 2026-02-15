@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTANCE_ID="i-YOUR-INSTANCE-ID"  # Replace with your actual instance ID
+INSTANCE_ID="i-0fece1a5965dbfebb"  # Replace with your actual instance ID
 REGION="us-east-1"
 
 echo "🛑 Stopping EC2 instance..."

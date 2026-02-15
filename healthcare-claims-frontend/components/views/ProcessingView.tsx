@@ -22,17 +22,17 @@ export const ProcessingView = () => {
   }, []);
 
   return (
-    <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-12 max-w-lg mx-auto text-center border border-white">
+    <div className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-12 max-w-lg mx-auto text-center border border-white/20 mt-10">
       <div className="mb-8 flex justify-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         >
-          <Loader2 className="w-16 h-16 text-blue-600" />
+          <Loader2 className="w-16 h-16 text-blue-500" />
         </motion.div>
       </div>
 
-      <h2 className="text-2xl font-bold text-slate-800 mb-8">Processing Claim</h2>
+      <h2 className="text-2xl font-bold text-white mb-8">Processing Claim</h2>
       
       <div className="space-y-5 text-left">
         {stages.map((stage, i) => (
@@ -42,16 +42,17 @@ export const ProcessingView = () => {
             animate={{ 
               opacity: i <= currentStage ? 1 : 0.3,
               x: 0,
-              color: i === currentStage ? '#2563eb' : '#64748b'
             }}
             className="flex items-center gap-4"
           >
             {i < currentStage ? (
-              <CheckCircle2 className="w-5 h-5 text-green-500" />
+              <CheckCircle2 className="w-5 h-5 text-green-400" />
             ) : (
-              <div className={`w-5 h-5 rounded-full border-2 ${i === currentStage ? 'border-blue-600 border-t-transparent animate-spin' : 'border-slate-300'}`} />
+              <div className={`w-5 h-5 rounded-full border-2 ${i === currentStage ? 'border-blue-500 animate-pulse' : 'border-slate-600'}`} />
             )}
-            <span className="font-medium text-sm md:text-base">{stage}</span>
+            <span className={`font-medium ${i === currentStage ? 'text-blue-400' : (i < currentStage ? 'text-slate-300' : 'text-slate-500')}`}>
+              {stage}
+            </span>
           </motion.div>
         ))}
       </div>

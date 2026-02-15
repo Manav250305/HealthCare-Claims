@@ -924,9 +924,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Frontend with animations
 
 ### Phase 2 (In Progress 🚧)
-- [ ] User authentication
+- [x] User authentication
 - [ ] Multi-user support
-- [ ] Claim history dashboard
+- [x] Claim history dashboard
 - [ ] Batch processing
 - [ ] Email notifications
 

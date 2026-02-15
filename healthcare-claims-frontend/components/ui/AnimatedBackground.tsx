@@ -5,41 +5,34 @@ import { useEffect, useState } from 'react';
 export const AnimatedBackground = () => {
   const [mounted, setMounted] = useState(false);
 
-  // This ensures the random elements are only rendered on the client side
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <div className="fixed inset-0 -z-10 bg-[#020617]" />;
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-50">
-      {/* The base gradient is static, so it can render on the server safely */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100"
-        animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
-        transition={{ duration: 20, repeat: Infinity, repeatType: 'reverse' }}
+    <div className="fixed inset-0 -z-10 bg-[#020617] overflow-hidden">
+      {/* Film Grain / Noise Overlay for the "Video" texture */}
+      <div 
+        className="absolute inset-0 opacity-[0.04] mix-blend-overlay z-0 pointer-events-none" 
+        style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} 
       />
-      
-      {/* Only map and render the random circles AFTER hydration is complete */}
-      {mounted && [...Array(15)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-64 h-64 bg-blue-400/10 rounded-full blur-3xl"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, -40, 0],
-            x: [0, 20, 0],
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{
-            duration: 5 + Math.random() * 5,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-          }}
-        />
-      ))}
+
+      {/* Fluid Mesh Gradient Orbs */}
+      <motion.div
+        animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute -top-[30%] -left-[10%] w-[70vw] h-[70vw] rounded-full blur-[130px] bg-indigo-900/40 mix-blend-screen"
+      />
+      <motion.div
+        animate={{ rotate: [360, 0], scale: [1, 1.3, 1], x: [0, 100, 0] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        className="absolute top-[10%] -right-[20%] w-[60vw] h-[60vw] rounded-full blur-[140px] bg-blue-900/30 mix-blend-screen"
+      />
+      <motion.div
+        animate={{ rotate: [0, -360], scale: [1, 1.2, 1], y: [0, -100, 0] }}
+        transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+        className="absolute -bottom-[20%] left-[20%] w-[80vw] h-[80vw] rounded-full blur-[150px] bg-emerald-900/20 mix-blend-screen"
+      />
     </div>
   );
 };

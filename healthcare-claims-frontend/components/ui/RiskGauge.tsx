@@ -14,8 +14,9 @@ export const RiskGauge = ({ score }: { score: number }) => {
   return (
     <div className="relative w-40 h-40 flex items-center justify-center">
       <svg className="w-full h-full transform -rotate-90">
-        {/* Background Circle */}
-        <circle cx="50%" cy="50%" r="45" stroke="#e2e8f0" strokeWidth="8" fill="none" />
+        {/* Background Circle - Updated for Dark Theme */}
+        <circle cx="50%" cy="50%" r="45" stroke="#334155" strokeWidth="8" fill="none" />
+        
         {/* Progress Circle */}
         <motion.circle
           cx="50%" cy="50%" r="45"
@@ -30,15 +31,16 @@ export const RiskGauge = ({ score }: { score: number }) => {
         />
       </svg>
       <div className="absolute flex flex-col items-center">
+        {/* TEXT COLOR CHANGED TO WHITE */}
         <motion.span 
-          className="text-4xl font-bold text-slate-800"
+          className="text-4xl font-bold text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: 1 }}
         >
           {score}
         </motion.span>
-        <span className="text-xs text-slate-500 font-uppercase">Risk Score</span>
+        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-1">Score</span>
       </div>
     </div>
   );
